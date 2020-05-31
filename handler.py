@@ -1,13 +1,14 @@
-import requests
-import os
+import requests, os
 from pprint import pprint
 
-accessToken = os.environ['TOKEN']
+accessToken = os.environ.get('TOKEN')
 
 baseUrl = 'https://gitlab.com/api/v4'
 # TODO: encript before commit
-headers = {f"'Private-Token':{accessToken}"}
+headers = {"Private-Token": f"{accessToken}"}
 userId = '5937077'
+
+# print(headers)
 
 def getUserProjects():
     projectIdList = []
@@ -31,6 +32,6 @@ def getProjectCommits():
 
     print(commitsList)
 
-    # return()
+    return()
 
 print(getProjectCommits())
