@@ -37,8 +37,8 @@ def getProjectCommits():
 
     return()
 
-print(getProjectCommits())
 
-# def lambda_handler(event, context):
-    
-#     print(getProjectCommits())
+def handler(event, context):
+    print(getProjectCommits())
+
+
