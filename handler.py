@@ -29,9 +29,16 @@ def getProjectCommits():
         r = requests.get(url, headers=headers)
         commitsPerProjectList = r.json()
         commitsList.append(commitsPerProjectList)
-
-    print(commitsList)
+        print(projectId)
+        for commits in commitsList:
+            for i in range(len(commits)):
+                print(commits[i]['committer_name'])
+                # print(i)
 
     return()
 
 print(getProjectCommits())
+
+# def lambda_handler(event, context):
+    
+#     print(getProjectCommits())
