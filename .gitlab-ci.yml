@@ -3,6 +3,7 @@ variables:
 
 stages:
   - prepare
+  - deploy
 
 image:
   name: node:latest
@@ -10,7 +11,7 @@ image:
 ###
 # Jobs
 ###
-setup_node:
+node_dependencies:
   stage: prepare
   script:
     - npm install
@@ -20,16 +21,25 @@ setup_node:
   tags:
     - gitlab-org    
 
-setup_pip:
+python_dependencies:
   stage: prepare
   script:
-    - apt-get update 
-    - apt-get install python3 -y
+    - pip install -r requirements.txt -t ./python_modules/
   artifacts:
     paths:
       - python_modules/
   tags:
+    - gitlab-org   
+
+deploy:
+  stage: deploy
+  script:
+    serverless deploy   
+  tags:
     - gitlab-org    
+
+
+
 
 
 
