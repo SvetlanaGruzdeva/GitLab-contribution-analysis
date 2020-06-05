@@ -1,0 +1,7 @@
+LambdaRoleNoVpc:
+  Type: AWS::IAM::Role
+  Properties:
+    RoleName: ${self:service}-LambdaRoleNoVpc
+    AssumeRolePolicyDocument: ${file(infra/iam/policies/assume-role.yml):assume-role}
+    ManagedPolicyArns:
+      - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
