@@ -24,6 +24,7 @@ node_dependencies:
 python_dependencies:
   stage: prepare
   script:
+    - apt-get install python3-pip 
     - pip3 install -r requirements.txt -t ./python_modules/
   artifacts:
     paths:
