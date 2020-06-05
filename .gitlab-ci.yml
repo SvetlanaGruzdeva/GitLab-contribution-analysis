@@ -1,0 +1,18 @@
+variables:
+  SERVICE_NAME: gitlab-contribution-analysis
+
+stages:
+  - prepare
+
+image:
+  name: node:latest
+
+
+download_and_install_node:
+  stage: prepare
+  script:
+    - npm install
+  artifacts:
+    paths:
+      - node_modules/
+
