@@ -7,12 +7,29 @@ stages:
 image:
   name: node:latest
 
-
-download_and_install_node:
+###
+# Jobs
+###
+setup_node:
   stage: prepare
   script:
     - npm install
   artifacts:
     paths:
       - node_modules/
+  tags:
+    - gitlab-org    
+
+setup_pip:
+  stage: prepare
+  script:
+    - apt-get update 
+    - apt-get install python3 -y
+  artifacts:
+    paths:
+      - python_modules/
+  tags:
+    - gitlab-org    
+
+
 
