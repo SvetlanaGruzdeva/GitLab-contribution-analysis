@@ -22,24 +22,24 @@ def getUserProjects():
 
 
 def getProjectCommits():
-    commitsList = []
-    commiterNameList = []
-    uniqueCommiterNameList = []
+    rawStatsList = []
     
     for projectId, projectName in getUserProjects().items():
         url = f"{baseUrl}/projects/{projectId}/repository/commits"
         r = requests.get(url, headers=headers)
         commitsPerProjectList = r.json()
-        commitsList.append(commitsPerProjectList)
         print('Project ID: ', projectId,', Project Name: ', projectName)
 
-        for commits in commitsList:
-            for i in range(len(commits)):
-                commiterNameList.append(commits[i]['committer_name'])
+        for commit in commitsPerProjectList:
+            commitsPerProject = {}
+            commitsPerProject['title'] = commit['title']
+            commitsPerProject['committed_date'] = commit['committed_date']
+            commitsPerProject['author_email'] = commit['author_email']
 
-        counter = Counter(commiterNameList)
+            rawStatsList.append(commitsPerProject)
 
-        print(counter.keys())
+        pprint(rawStatsList)
+
 
     return()
 
